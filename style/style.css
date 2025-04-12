@@ -1,0 +1,231 @@
+@charset "UTF-8"; /* adicionando regra para que não tenhamos problemas com a questão de acentuação*/
+
+/* importando fonte a ser utilizada do google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+/* criando regra para utilizar fonte baixada*/
+@font-face {
+    font-family: 'Android';
+    src: url('/fontes/idroid.otf') format('opentype');
+    font-weight: normal;
+}
+
+/* configurações globais com o * 
+Definindo que todos os seletores não tem margin e padding, alterando todo o site e redefinindo as configurações que vem como padrão para os seletores (por exemplo, p já vem com margin, mas agora não mais em função dessa configuração global)*/
+* {
+    margin: 0px;
+    padding: 0px
+}
+
+
+/* criando váriaveis em css com a pseudo-class :root para que possamos armazenar as informações e reutilizá-las em todo documento. Para criar: --nome-da-variave: valor-da-variavel  */
+:root {
+    /* criando variáveis para cores, conforme abaixo*/
+    --cor0: #c5ebd6;
+    --cor1: #83e1ad;
+    --cor2: #3ddc84;
+    --cor3: #2fa866;
+    --cor4: #1a5c37;
+    --cor5: #063d1e;
+
+    /* criando variáveia para fonte, conforme abaixo (seguimos a linha de adicionar várias para manter compatibilidade em todos navegadores)*/
+    --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
+    --fonte-destaque: 'Bebas Neue', sans-serif; /* fonte importada do google fonts*/
+    --fonte-android: 'Android', cursive; /* defindo variável que tem o valor da fonte baixada (definida na regra @font-face)*/
+}
+
+body {
+    background-color: var(--cor0);
+    font-family: var(--fonte-padrao);
+}
+
+header {
+    background-image: linear-gradient(to bottom, var(--cor3), var(--cor5));
+    min-height: 150px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+header > h1 {
+    color: white;
+    font-family: var(--fonte-destaque);  
+    font-size: 3em;
+    font-weight: normal;
+    margin-bottom: 20px;  
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.281)
+}
+
+header > p {
+    font-family: var(--fonte-padrao);
+    font-size: 1.2em;
+    color: white;
+    max-width: 600px;  
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: auto; 
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.281)
+}
+
+/* personalizando a nav inteira (todo o bloco do menu)*/
+nav {
+    background-color: var(--cor5);
+    padding: 10px;
+    box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.24);
+}
+
+/* personalizando cada link do menu da nav*/
+nav > a {
+    color: var(--cor1);
+    padding: 15px 10px 10px 10px;
+    border-radius: 5px; /* deixando bordas arredondadas(funcionará apenas com o hover)*/
+    text-decoration: none;
+    font-weight: bold;
+    transition-duration: 0.5s; /* propriedade que permite alterar o tempo de uma trasição. Nesse caso, altera o tempo do :hover, que tem a cor de fundo alterada quando passamos o mouse por cima pelo tempo estabelecido no valor do atributo transition-durantion definido aqui*/
+}
+
+/* personalizando cada link do menu quando passarmos o mouse por cima*/
+nav > a:hover {
+    background-color: var(--cor3);
+    color: var(--cor5);
+}
+
+main {
+    background-color: white;
+    /* adicionando min-width e max-width para deixar nosso site responsivo, ou seja, a tela irá se alterar para tamanhos entre o min-widht e o max-width*/
+    margin: auto;
+    margin-bottom: 30px; /* margin definida apenas para baixo*/
+    min-width: 300px; 
+    max-width: 1000px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.418);
+    border-radius: 0px 0px 10px 10px; /* mesma coisa que: border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;*/
+}
+
+/* configurando todos os parágrafos do main*/
+main p {
+    margin: 15px 0px; /* configurando margin cima-baixo e direita- esquerda*/
+    text-align: justify;
+    text-indent: 30px; /* espaço do parágrafo no inicio de cada p*/
+    line-height: 2em; /* altura/espaço vertical entre linhas*/
+    font-size: 1em;
+}
+
+/* configurando todas as áreas em negrito(strong) dentro de main*/
+main strong {
+    color: var(--cor4);
+    font-weight: bold;
+}
+
+/* alterando todos os links dentro do main */
+main a {
+    background-color: var(--cor1);
+    color: var(--cor5);
+    font-weight: bold;
+    padding: 2px 6px;
+    text-decoration: none;
+}
+
+/* adicionando características de hover ao links do main*/
+main a:hover {
+    text-decoration: underline;
+    color: var(--cor4);
+}
+
+/* alterando os links(a) que tem a class "externo" com o pseudo-elemento after*/
+main a.externo::after {
+    content: '\00A0\1F517'; /* adicionando o emoji de link no conteúdo, ao final de cada link*/
+}
+
+main img {
+    /* deixando as imagens responsivas com width: 100%
+    Isso significa que as imagens vão utilizar 100% do tamanho definido dentro do seletor "main"*/
+    width: 100%;
+}
+
+/* alterando a imagem com class pequena dentro do main*/
+main img.pequena {
+    max-width: 350px; 
+    display: block;
+    margin: auto;
+}
+
+/* todo h1 que estiver dentro de main terá essas configurações*/
+main h1 {
+    color: var(--cor5); 
+    font-family: var(--fonte-android);
+    font-weight: normal;
+    font-size: 1.8em;
+}
+
+main h2 {
+    font-family: var(--fonte-android);
+    color: var(--cor4);
+    font-size: 1.3em;
+    font-weight: normal;
+    background-image: linear-gradient(to right, var(--cor1), transparent); /* adicionando gradiente ao fundo dos h2, para direita, da cor1 para transparente(branco nesse caso conforme cor do main)*/
+    padding: 2px 10px;
+}
+
+/* alterando as características do bloco(div) aside do nosso site*/
+aside {
+    background-color: var(--cor1);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.192);
+    border: 2px solid var(--cor3); /* adicionando uma borda verde para dar destaque no aside*/
+}
+
+aside > h3 {
+    background-color: var(--cor5);
+    color: white;
+    padding: 10px;
+    margin: -10px -10px 0px -10px; /* deixamos a margin negativa, ou seja, o elemento irá colar nas paredes do aside, sobreponde o padding que o aside tem*/
+    border-radius: 10px 10px 0px 0px;
+}
+
+/* alterando a lista não ordenada dentro do aside*/
+aside > ul {
+    list-style-type: '\1F5F8\00A0\00A0'; /* altera o estilo dos items da lista(li) - none: sem nenhuma personalização - '\1F5F8' referencia o código do emoji check em emojipedia - \00A0 significa um espaço sem quebra de linha */
+    list-style-position: inside; /* deixando todo o conteúdo, inclusive o tipo de cada li dentro do aside*/
+    columns: 2; /* divindo os li em 2 colunas*/
+}
+
+/* div que contém nosso vídeo (iframe)*/
+div.video {
+    background-color: var(--cor5);
+    margin: 0px -20px 30px -20px; /* colando o video na parede do main, retirando o padding com a margin negativa*/
+    border-radius: 5px;
+    padding: 20px;
+    padding-bottom: 57%;
+    position: relative;
+}
+
+/* configurando o iframe propriamente dito, presente na div que tem class video*/
+div.video > iframe {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+}
+
+footer {
+    background-color: var(--cor5);
+    color: white;
+    font-size: 0.8em;
+    padding: 5px;
+    text-align: center;
+}
+
+footer a { /* mesmo que footer > p > a*/
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+    transition-duration: 0.75s; /* adicionando uma pequena animação de transição quando o hover for acionado (as configurações do hover serão durante o tempo definido nessa propriedade)*/
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: var(--cor1);
+}
